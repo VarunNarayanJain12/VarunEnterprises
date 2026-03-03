@@ -20,7 +20,7 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 lg:pt-36 pb-32 sm:pb-36 lg:pb-40">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 pt-24 sm:pt-32 lg:pt-36 pb-44 sm:pb-36 lg:pb-40">
         <div className="max-w-3xl">
           {/* Tag */}
           <div className="inline-block bg-primary px-4 sm:px-5 py-1.5 sm:py-2 mb-6 sm:mb-8 animate-fade-in-up">
