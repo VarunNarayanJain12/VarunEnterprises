@@ -1,186 +1,72 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { 
-  Search, 
-  FileText, 
-  CheckCircle, 
-  Send, 
-  Monitor, 
-  Truck, 
+import {
+  Search,
+  FileText,
+  CheckCircle,
+  Send,
+  Monitor,
+  Truck,
   HandCoins,
-  ArrowRight 
+  ArrowRight,
 } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
 
 const ProcessSection = () => {
-  const processSteps = [
-    {
-      step: 1,
-      icon: Search,
-      title: "Opportunity Identification",
-      description: "We continuously monitor government portals and corporate announcements to identify relevant tender opportunities that match your capabilities.",
-      duration: "1-2 days",
-      deliverables: ["Tender alerts", "Opportunity assessment", "Eligibility verification"]
-    },
-    {
-      step: 2,
-      icon: FileText,
-      title: "Documentation & Preparation",
-      description: "Our experts prepare comprehensive tender documents, ensuring all technical and commercial requirements are met with precision.",
-      duration: "3-5 days",
-      deliverables: ["Technical documentation", "Commercial proposals", "Compliance certificates"]
-    },
-    {
-      step: 3,
-      icon: CheckCircle,
-      title: "Review & Quality Check",
-      description: "Multiple quality checks and reviews are conducted to ensure error-free submissions that maximize your chances of success.",
-      duration: "1-2 days",
-      deliverables: ["Quality audit", "Final review", "Client approval"]
-    },
-    {
-      step: 4,
-      icon: Send,
-      title: "Tender Submission",
-      description: "Timely submission of bids through appropriate channels, whether online portals or physical submission as per requirements.",
-      duration: "Same day",
-      deliverables: ["Bid submission", "Acknowledgment receipt", "Submission confirmation"]
-    },
-    {
-      step: 5,
-      icon: Monitor,
-      title: "Follow-up & Monitoring",
-      description: "Continuous monitoring of bid status, attending clarification meetings, and providing additional information as required.",
-      duration: "Ongoing",
-      deliverables: ["Status updates", "Clarification responses", "Presentation support"]
-    },
-    {
-      step: 6,
-      icon: Truck,
-      title: "Execution & Delivery",
-      description: "Upon winning, we manage the entire supply chain from procurement to delivery, ensuring timely and quality execution.",
-      duration: "As per contract",
-      deliverables: ["Supply chain management", "Quality assurance", "Timely delivery"]
-    },
-    {
-      step: 7,
-      icon: HandCoins,
-      title: "Payment & Closure",
-      description: "Complete handling of payment processes, warranty claims, and project closure documentation for seamless completion.",
-      duration: "1-2 weeks",
-      deliverables: ["Payment processing", "Warranty documentation", "Project closure"]
-    }
+  useReveal();
+
+  const steps = [
+    { icon: Search, title: "Opportunity Identification", desc: "We monitor GeM, CPPP, and state portals to identify relevant tender opportunities." },
+    { icon: FileText, title: "Documentation", desc: "Our experts prepare comprehensive tender documents meeting all technical and commercial specs." },
+    { icon: CheckCircle, title: "Quality Review", desc: "Multi-stage quality checks ensure error-free submissions that maximize success rates." },
+    { icon: Send, title: "Bid Submission", desc: "Timely submission through appropriate channels with complete compliance documentation." },
+    { icon: Monitor, title: "Tracking & Follow-up", desc: "Continuous monitoring of bid status and prompt responses to clarification requests." },
+    { icon: Truck, title: "Execution & Delivery", desc: "End-to-end supply chain management from procurement to doorstep delivery." },
+    { icon: HandCoins, title: "Payment & Closure", desc: "Complete payment processing, warranty support, and project closure documentation." },
   ];
 
   return (
-    <section id="process" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Our <span className="bg-gradient-primary bg-clip-text text-transparent">Process</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              From tender identification to successful delivery - our proven 7-step process 
-              ensures maximum success rate and seamless execution of your projects.
-            </p>
-          </div>
+    <section id="process" className="py-16 sm:py-20 lg:py-24 bg-muted/40 dark:bg-muted/20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-10 sm:mb-16 reveal">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight tracking-tight">
+            OUR PROCESS<br />
+            <span className="text-primary">HOW WE DELIVER RESULTS</span>
+          </h2>
+          <div className="w-16 h-1 bg-primary mt-4 sm:mt-5" />
+        </div>
 
-          {/* Process Timeline */}
-          <div className="relative">
-            {/* Connection Line - Hidden on mobile */}
-            <div className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 top-32 bottom-32 w-0.5 bg-gradient-to-b from-primary to-secondary"></div>
-
-            <div className="space-y-12 lg:space-y-24">
-              {processSteps.map((step, index) => (
-                <div key={index} className={`flex flex-col lg:flex-row items-center gap-8 ${
-                  index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                }`}>
-                  {/* Step Card */}
-                  <div className="flex-1 w-full max-w-lg">
-                    <Card className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-card border-none">
-                      <CardContent className="p-6">
-                        <div className="flex items-center gap-4 mb-4">
-                          <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-bold text-lg">
-                            {step.step}
-                          </div>
-                          <div className="flex-1">
-                            <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
-                              {step.title}
-                            </h3>
-                            <div className="text-sm text-muted-foreground">
-                              Duration: {step.duration}
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <p className="text-muted-foreground mb-4">
-                          {step.description}
-                        </p>
-
-                        <div className="space-y-2">
-                          <h4 className="font-semibold text-foreground text-sm">Key Deliverables:</h4>
-                          <ul className="space-y-1">
-                            {step.deliverables.map((deliverable, deliverableIndex) => (
-                              <li key={deliverableIndex} className="text-sm text-muted-foreground flex items-center gap-2">
-                                <CheckCircle className="h-3 w-3 text-success flex-shrink-0" />
-                                {deliverable}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </div>
-
-                  {/* Step Icon - Center for desktop */}
-                  <div className="lg:flex-shrink-0 lg:order-none order-first">
-                    <div className="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                      <step.icon className="h-10 w-10 text-primary-foreground" />
-                    </div>
-                  </div>
-
-                  {/* Arrow or Spacer */}
-                  <div className="flex-1 w-full max-w-lg lg:flex lg:justify-center hidden">
-                    {index < processSteps.length - 1 && (
-                      <ArrowRight className="h-8 w-8 text-muted-foreground" />
-                    )}
-                  </div>
-                </div>
-              ))}
+        {/* Steps */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border mb-10 sm:mb-16 reveal-stagger">
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              className="group bg-card p-6 sm:p-8 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-500 relative"
+            >
+              <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
+                <span className="text-3xl sm:text-4xl font-extrabold text-primary/20 group-hover:text-primary/50 transition-colors duration-500">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <step.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+              </div>
+              <h3 className="text-base sm:text-lg font-bold text-card-foreground mb-1.5 sm:mb-2 tracking-tight">{step.title}</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+              {/* Bottom accent line on hover */}
+              <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-500" />
             </div>
-          </div>
-
-          {/* Success Metrics */}
-          <div className="mt-20">
-            <Card className="bg-gradient-hero border-none">
-              <CardContent className="p-8 text-center">
-                <h3 className="text-2xl font-semibold text-primary-foreground mb-6">
-                  Process Success Metrics
-                </h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-                  <div>
-                    <div className="text-3xl font-bold text-primary-foreground mb-2">98%</div>
-                    <div className="text-primary-foreground/80 text-sm">Success Rate</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold text-primary-foreground mb-2">24hrs</div>
-                    <div className="text-primary-foreground/80 text-sm">Response Time</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold text-primary-foreground mb-2">500+</div>
-                    <div className="text-primary-foreground/80 text-sm">Completed Projects</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold text-primary-foreground mb-2">Zero</div>
-                    <div className="text-primary-foreground/80 text-sm">Quality Issues</div>
-                  </div>
-                </div>
-                <Button size="lg" className="bg-secondary hover:bg-secondary-light text-secondary-foreground">
-                  Start Your Project Today
-                </Button>
-              </CardContent>
-            </Card>
+          ))}
+          {/* CTA cell */}
+          <div className="bg-secondary dark:bg-accent p-6 sm:p-8 flex items-center justify-center">
+            <div className="flex flex-col items-center justify-center h-full text-center">
+              <p className="text-xl sm:text-2xl font-extrabold text-secondary-foreground dark:text-foreground mb-3 sm:mb-4">READY TO<br /><span className="text-primary">START?</span></p>
+              <Button
+                className="h-10 sm:h-12 px-6 sm:px-8 text-[10px] sm:text-[11px] font-bold tracking-[0.2em] bg-primary hover:bg-primary-light text-white rounded-none group shadow-lg shadow-primary/20"
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+              >
+                CONTACT US
+                <ArrowRight className="ml-2 h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>

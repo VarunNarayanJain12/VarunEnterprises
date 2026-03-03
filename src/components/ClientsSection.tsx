@@ -1,198 +1,89 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Building, Factory, Zap, Fuel, Users, TrendingUp } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
 
 const ClientsSection = () => {
+  useReveal();
+
   const majorClients = [
-    { name: "UCIL", fullName: "Uranium Corporation of India Limited", sector: "Nuclear Energy" },
-    { name: "BHEL", fullName: "Bharat Heavy Electricals Limited", sector: "Power Equipment" },
-    { name: "IOCL", fullName: "Indian Oil Corporation Limited", sector: "Oil & Gas" },
+    { name: "UCIL", fullName: "Uranium Corporation of India Ltd.", sector: "Nuclear Energy" },
+    { name: "BHEL", fullName: "Bharat Heavy Electricals Ltd.", sector: "Power Equipment" },
+    { name: "IOCL", fullName: "Indian Oil Corporation Ltd.", sector: "Oil & Gas" },
     { name: "ONGC", fullName: "Oil and Natural Gas Corporation", sector: "Oil & Gas" },
-    { name: "NTPC", fullName: "National Thermal Power Corporation", sector: "Power Generation" },
-    { name: "SAIL", fullName: "Steel Authority of India Limited", sector: "Steel & Mining" },
+    { name: "NTPC", fullName: "National Thermal Power Corp.", sector: "Power Generation" },
+    { name: "SAIL", fullName: "Steel Authority of India Ltd.", sector: "Steel & Mining" },
     { name: "Coal India", fullName: "Coal India Limited", sector: "Mining" },
-    { name: "GAIL", fullName: "Gas Authority of India Limited", sector: "Natural Gas" },
+    { name: "GAIL", fullName: "Gas Authority of India Ltd.", sector: "Natural Gas" },
   ];
 
   const industries = [
-    {
-      icon: Zap,
-      name: "Power & Energy",
-      description: "Thermal, hydro, and renewable energy projects",
-      clients: 45
-    },
-    {
-      icon: Fuel,
-      name: "Oil & Gas",
-      description: "Upstream, downstream, and petrochemical operations",
-      clients: 38
-    },
-    {
-      icon: Factory,
-      name: "Manufacturing",
-      description: "Heavy machinery, equipment, and industrial supplies",
-      clients: 52
-    },
-    {
-      icon: Building,
-      name: "Infrastructure",
-      description: "Construction, transportation, and urban development",
-      clients: 41
-    },
-  ];
-
-  const caseStudies = [
-    {
-      client: "BHEL",
-      project: "Turbine Components Supply",
-      value: "₹25 Cr",
-      duration: "18 months",
-      description: "Successfully supplied precision-engineered turbine components for thermal power plant projects across 3 states."
-    },
-    {
-      client: "IOCL",
-      project: "Pipeline Infrastructure",
-      value: "₹18 Cr",
-      duration: "12 months",
-      description: "Delivered high-grade pipeline materials and fittings for refinery expansion projects with zero quality issues."
-    },
-    {
-      client: "UCIL",
-      project: "Safety Equipment Supply",
-      value: "₹12 Cr",
-      duration: "8 months",
-      description: "Provided specialized safety and monitoring equipment for uranium processing facilities with enhanced security protocols."
-    }
+    { name: "Power & Energy", projects: "120+", icon: "\u26A1" },
+    { name: "Oil & Gas", projects: "85+", icon: "\uD83D\uDEE2\uFE0F" },
+    { name: "Mining & Metals", projects: "95+", icon: "\u26CF\uFE0F" },
+    { name: "Infrastructure", projects: "70+", icon: "\uD83C\uDFD7\uFE0F" },
   ];
 
   return (
-    <section id="clients" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Our <span className="bg-gradient-primary bg-clip-text text-transparent">Clients</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Trusted by India's leading PSUs and corporations for over a decade. 
-              Building partnerships that drive national progress.
-            </p>
-          </div>
+    <section id="clients" className="py-16 sm:py-20 lg:py-24 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mb-10 sm:mb-16 reveal">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight tracking-tight">
+            OUR PARTNERS<br />
+            <span className="text-primary">TRUSTED BY INDUSTRY LEADERS</span>
+          </h2>
+          <div className="w-16 h-1 bg-primary mt-4 sm:mt-5" />
+        </div>
 
-          {/* Major Clients Grid */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-semibold text-foreground text-center mb-8">
-              Major Government & PSU Clients
-            </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-              {majorClients.map((client, index) => (
-                <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-gradient-card border-none">
-                  <CardContent className="p-6 text-center">
-                    <div className="text-2xl font-bold text-primary mb-2 group-hover:scale-110 transition-transform">
-                      {client.name}
-                    </div>
-                    <div className="text-sm text-muted-foreground mb-2">
-                      {client.fullName}
-                    </div>
-                    <Badge variant="secondary" className="text-xs">
-                      {client.sector}
-                    </Badge>
-                  </CardContent>
-                </Card>
-              ))}
+        {/* Clients Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4 mb-12 sm:mb-20 reveal-stagger">
+          {majorClients.map((client, index) => (
+            <div
+              key={index}
+              className="group p-4 sm:p-6 bg-card border border-border/50 hover:border-primary/60 transition-all duration-500 text-center hover:shadow-xl hover:-translate-y-1"
+            >
+              <p className="text-xl sm:text-2xl md:text-3xl font-extrabold text-primary mb-1 sm:mb-2 group-hover:scale-110 transition-transform duration-500">
+                {client.name}
+              </p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground mb-2 sm:mb-3 line-clamp-1">{client.fullName}</p>
+              <Badge variant="secondary" className="text-[10px] sm:text-xs font-semibold rounded-none">{client.sector}</Badge>
             </div>
-          </div>
+          ))}
+        </div>
 
-          {/* Industries Served */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-semibold text-foreground text-center mb-8">
-              Industries We Serve
-            </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {industries.map((industry, index) => (
-                <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                  <CardContent className="p-6 text-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-primary mb-4 group-hover:scale-110 transition-transform">
-                      <industry.icon className="h-8 w-8 text-primary-foreground" />
-                    </div>
-                    <h4 className="text-lg font-semibold text-foreground mb-2">
-                      {industry.name}
-                    </h4>
-                    <p className="text-sm text-muted-foreground mb-3">
-                      {industry.description}
-                    </p>
-                    <div className="flex items-center justify-center gap-2 text-primary">
-                      <Users className="h-4 w-4" />
-                      <span className="font-semibold">{industry.clients}+ Clients</span>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+        {/* Industries - Dark Section */}
+        <div className="bg-secondary dark:bg-card p-6 sm:p-10 md:p-16 reveal-scale">
+          <div className="grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+            <div>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-secondary-foreground dark:text-foreground mb-3 sm:mb-4 tracking-tight">
+                SECTORS WE <span className="text-primary">SERVE</span>
+              </h3>
+              <p className="text-sm sm:text-base text-secondary-foreground/60 dark:text-muted-foreground leading-relaxed mb-5 sm:mb-6">
+                From nuclear energy to oil refineries, our products power India's most critical infrastructure. We understand the unique demands of each sector.
+              </p>
+              <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                {industries.map((industry, i) => (
+                  <div key={i} className="border border-secondary-foreground/20 dark:border-border p-3 sm:p-4 hover:border-primary transition-all duration-300 hover:bg-white/5">
+                    <span className="text-xl sm:text-2xl mb-1.5 sm:mb-2 block">{industry.icon}</span>
+                    <p className="text-secondary-foreground dark:text-foreground font-semibold text-xs sm:text-sm">{industry.name}</p>
+                    <p className="text-primary font-bold text-base sm:text-lg">{industry.projects}</p>
+                    <p className="text-secondary-foreground/40 dark:text-muted-foreground text-[10px] sm:text-xs">projects</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-
-          {/* Case Studies */}
-          <div className="mb-16">
-            <h3 className="text-2xl font-semibold text-foreground text-center mb-8">
-              Recent Success Stories
-            </h3>
-            <div className="grid lg:grid-cols-3 gap-8">
-              {caseStudies.map((study, index) => (
-                <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2">
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between mb-4">
-                      <Badge variant="outline" className="font-semibold">
-                        {study.client}
-                      </Badge>
-                      <div className="flex items-center gap-1 text-success">
-                        <TrendingUp className="h-4 w-4" />
-                        <span className="font-bold">{study.value}</span>
-                      </div>
-                    </div>
-                    <h4 className="text-lg font-semibold text-foreground mb-3 group-hover:text-primary transition-colors">
-                      {study.project}
-                    </h4>
-                    <p className="text-muted-foreground text-sm mb-4">
-                      {study.description}
-                    </p>
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-muted-foreground">Duration: {study.duration}</span>
-                      <Badge variant="secondary">Completed</Badge>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          {/* Stats Section */}
-          <div className="text-center">
-            <Card className="bg-gradient-hero border-none">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold text-primary-foreground mb-6">
-                  Our Impact in Numbers
-                </h3>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-foreground mb-2">200+</div>
-                    <div className="text-primary-foreground/80">Active Clients</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-foreground mb-2">₹500Cr+</div>
-                    <div className="text-primary-foreground/80">Transactions</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-foreground mb-2">15+</div>
-                    <div className="text-primary-foreground/80">States Covered</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-primary-foreground mb-2">98%</div>
-                    <div className="text-primary-foreground/80">Success Rate</div>
-                  </div>
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 text-center">
+              {[
+                { value: "200+", label: "Active Clients" },
+                { value: "500Cr+", label: "Total Transactions" },
+                { value: "15+", label: "States Covered" },
+                { value: "98%", label: "Success Rate" },
+              ].map((stat, i) => (
+                <div key={i} className="py-4 sm:py-6">
+                  <p className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary mb-0.5 sm:mb-1">{stat.value}</p>
+                  <p className="text-[10px] sm:text-xs font-bold text-secondary-foreground/50 dark:text-muted-foreground tracking-wider uppercase">{stat.label}</p>
                 </div>
-              </CardContent>
-            </Card>
+              ))}
+            </div>
           </div>
         </div>
       </div>

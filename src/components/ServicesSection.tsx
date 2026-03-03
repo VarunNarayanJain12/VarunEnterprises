@@ -1,202 +1,141 @@
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
-import { 
-  Building2, 
-  Briefcase, 
-  FileText, 
-  Truck, 
-  Shield, 
-  Settings,
-  Search,
-  Filter
+import {
+  Cpu,
+  Zap,
+  Shield,
+  Wrench,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
+
+interface DivisionItem {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  products: string[];
+  image: string;
+}
 
 const ServicesSection = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  useReveal();
 
-  const services = [
+  const divisions: DivisionItem[] = [
     {
-      category: "Government Tenders",
-      icon: Building2,
-      title: "Government Tender Participation",
-      description: "Expert handling of central and state government tenders across multiple sectors including PSUs like UCIL, BHEL, IOCL, and more.",
-      features: ["Tender Documentation", "Bid Management", "Compliance Handling", "Pre-qualification Support"],
-      color: "primary"
+      icon: Cpu,
+      title: "Industrial Electronics",
+      description: "High-precision electronic components, PLCs, SCADA systems, and control panels for heavy industries and power plants.",
+      products: ["PLC Systems & Controllers", "SCADA & Automation", "Control Panels", "Sensors & Instruments"],
+      image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
     },
     {
-      category: "Corporate Trading",
-      icon: Briefcase,
-      title: "Corporate Supply Chain",
-      description: "End-to-end trading solutions for private sector clients with focus on industrial equipment, raw materials, and finished goods.",
-      features: ["B2B Trading", "Bulk Procurement", "Supply Chain Management", "Quality Assurance"],
-      color: "secondary"
+      icon: Zap,
+      title: "Electrical Equipment",
+      description: "Complete range of electrical equipment including transformers, switchgear, cables, and distribution panels.",
+      products: ["Transformers & Switchgear", "HT/LT Cables", "Distribution Panels", "Power Quality Solutions"],
+      image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80",
     },
     {
-      category: "Documentation",
-      icon: FileText,
-      title: "Legal & Documentation",
-      description: "Comprehensive documentation services ensuring full compliance with government regulations and corporate requirements.",
-      features: ["Contract Management", "Regulatory Compliance", "Document Preparation", "Legal Support"],
-      color: "success"
+      icon: Wrench,
+      title: "Pumping Equipment",
+      description: "Industrial-grade pumps, valves, and fluid management systems for mining, water treatment, and petrochemical sectors.",
+      products: ["Centrifugal Pumps", "Submersible Pumps", "Industrial Valves", "Fluid Control Systems"],
+      image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80",
     },
     {
-      category: "Logistics",
-      icon: Truck,
-      title: "Logistics & Delivery",
-      description: "Nationwide logistics network ensuring timely delivery of goods with end-to-end tracking and insurance coverage.",
-      features: ["Pan-India Delivery", "Tracking System", "Insurance Coverage", "Warehousing"],
-      color: "warning"
-    },
-    {
-      category: "Consulting",
       icon: Shield,
-      title: "Business Consulting",
-      description: "Strategic consulting services to help businesses identify opportunities and optimize their tender participation strategies.",
-      features: ["Market Analysis", "Strategy Development", "Risk Assessment", "Performance Optimization"],
-      color: "primary"
+      title: "Safety & PPE",
+      description: "Comprehensive safety solutions including personal protective equipment, fire safety systems, and hazard management.",
+      products: ["PPE Kits & Equipment", "Fire Safety Systems", "Gas Detection Systems", "Safety Signage & Barriers"],
+      image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
     },
-    {
-      category: "Technology",
-      icon: Settings,
-      title: "Technical Solutions",
-      description: "Technology-driven solutions for modern trading challenges including digital platforms and automated processes.",
-      features: ["Digital Platforms", "Automation", "Data Analytics", "System Integration"],
-      color: "secondary"
-    }
   ];
 
-  const categories = ["All", ...new Set(services.map(service => service.category))];
+  const handlePrev = () => {
+    setActiveIndex((prev) => (prev === 0 ? divisions.length - 1 : prev - 1));
+  };
 
-  const filteredServices = services.filter(service => {
-    const matchesSearch = service.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         service.description.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory === "All" || service.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
+  const handleNext = () => {
+    setActiveIndex((prev) => (prev === divisions.length - 1 ? 0 : prev + 1));
+  };
 
   return (
-    <section id="services" className="py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Our <span className="bg-gradient-primary bg-clip-text text-transparent">Services</span>
+    <section id="services" className="py-16 sm:py-20 lg:py-24 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-10 sm:mb-14 reveal">
+          <div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight tracking-tight">
+              INDUSTRIAL CATALOG<br />
+              <span className="text-primary">OUR SPECIALIZED DIVISIONS</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-              Comprehensive trading and tender solutions designed to maximize your business opportunities
-              and ensure successful project completion.
-            </p>
+            <div className="w-16 h-1 bg-primary mt-4 sm:mt-5" />
+          </div>
+          <div className="flex gap-3 mt-5 sm:mt-0">
+            <button
+              onClick={handlePrev}
+              className="w-10 h-10 sm:w-12 sm:h-12 border-2 border-border hover:border-primary flex items-center justify-center transition-all duration-300 group hover:bg-primary"
+            >
+              <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground group-hover:text-white transition-colors" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="w-10 h-10 sm:w-12 sm:h-12 border-2 border-border hover:border-primary flex items-center justify-center transition-all duration-300 group hover:bg-primary"
+            >
+              <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground group-hover:text-white transition-colors" />
+            </button>
+          </div>
+        </div>
 
-            {/* Search and Filter */}
-            <div className="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder="Search services..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10"
+        {/* Divisions Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 reveal-stagger">
+          {divisions.map((division, index) => (
+            <Card
+              key={index}
+              className={"group bg-card border-border/50 hover:border-primary/60 rounded-none transition-all duration-500 overflow-hidden cursor-pointer hover:shadow-xl hover:-translate-y-1 " + (activeIndex === index ? "ring-2 ring-primary shadow-lg" : "")}
+              onClick={() => setActiveIndex(index)}
+            >
+              <div className="aspect-[4/3] overflow-hidden relative">
+                <img
+                  src={division.image}
+                  alt={division.title}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
-              <div className="flex flex-wrap gap-2">
-                {categories.map((category) => (
-                  <Button
-                    key={category}
-                    variant={selectedCategory === category ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setSelectedCategory(category)}
-                    className="flex items-center gap-1"
-                  >
-                    <Filter className="h-3 w-3" />
-                    {category}
-                  </Button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredServices.map((service, index) => (
-              <Card key={index} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-card border-none">
-                <CardHeader className="text-center pb-4">
-                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-primary mb-4 group-hover:scale-110 transition-transform`}>
-                    <service.icon className="h-8 w-8 text-primary-foreground" />
-                  </div>
-                  <Badge variant="secondary" className="w-fit mx-auto mb-2">
-                    {service.category}
-                  </Badge>
-                  <CardTitle className="text-xl text-foreground group-hover:text-primary transition-colors">
-                    {service.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <p className="text-muted-foreground text-center">
-                    {service.description}
-                  </p>
-                  <div className="space-y-2">
-                    <h4 className="font-semibold text-foreground text-sm">Key Features:</h4>
-                    <ul className="space-y-1">
-                      {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="text-sm text-muted-foreground flex items-center gap-2">
-                          <div className="w-1 h-1 bg-primary rounded-full"></div>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <Button className="w-full bg-gradient-primary hover:opacity-90 group-hover:scale-105 transition-transform">
-                    Learn More
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* No Results */}
-          {filteredServices.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-muted-foreground text-lg">No services found matching your criteria.</p>
-              <Button 
-                variant="outline" 
-                onClick={() => {
-                  setSearchTerm("");
-                  setSelectedCategory("All");
-                }}
-                className="mt-4"
-              >
-                Clear Filters
-              </Button>
-            </div>
-          )}
-
-          {/* CTA Section */}
-          <div className="mt-16 text-center">
-            <Card className="bg-gradient-hero border-none">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold text-primary-foreground mb-4">
-                  Ready to Get Started?
-                </h3>
-                <p className="text-primary-foreground/90 mb-6 max-w-2xl mx-auto">
-                  Let our experts help you identify the best opportunities and develop 
-                  a winning strategy for your next tender or trading opportunity.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Button size="lg" className="bg-secondary hover:bg-secondary-light">
-                    Schedule Consultation
-                  </Button>
-                  <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-                    Download Brochure
-                  </Button>
+              <CardContent className="p-4 sm:p-6">
+                <div className="flex items-center gap-2.5 sm:gap-3 mb-2 sm:mb-3">
+                  <division.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary flex-shrink-0" />
+                  <h3 className="text-base sm:text-lg font-bold text-card-foreground tracking-tight">{division.title}</h3>
                 </div>
+                <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-3 sm:mb-4">{division.description}</p>
+                <ul className="space-y-1.5 sm:space-y-2">
+                  {division.products.map((product, i) => (
+                    <li key={i} className="flex items-center gap-2 sm:gap-2.5 text-xs sm:text-sm">
+                      <div className="w-1.5 h-1.5 bg-primary flex-shrink-0" />
+                      <span className="text-muted-foreground">{product}</span>
+                    </li>
+                  ))}
+                </ul>
               </CardContent>
             </Card>
-          </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-10 sm:mt-14 reveal">
+          <Button
+            size="lg"
+            className="h-12 sm:h-14 px-8 sm:px-10 text-[11px] sm:text-[12px] font-bold tracking-[0.2em] bg-primary hover:bg-primary-light text-white rounded-none group shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300"
+            onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+          >
+            REQUEST FULL CATALOG
+            <ArrowRight className="ml-3 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+          </Button>
         </div>
       </div>
     </section>

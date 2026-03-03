@@ -2,141 +2,88 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Professional Corporate Design System for Trading & Tender Company
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    /* Base Colors */
-    --background: 0 0% 100%;
-    --foreground: 215 25% 27%;
-
-    /* Card & Surface Colors */
+    --background: 0 0% 98%;
+    --foreground: 222 47% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 215 25% 27%;
-
-    /* Corporate Navy Blue - Primary Brand Color */
-    --primary: 217 91% 24%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 24 95% 53%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 217 91% 35%;
-    --primary-dark: 217 91% 15%;
-
-    /* Professional Teal - Secondary Brand Color */
-    --secondary: 175 61% 29%;
+    --primary-light: 24 95% 60%;
+    --primary-dark: 24 95% 42%;
+    --secondary: 222 47% 11%;
     --secondary-foreground: 0 0% 100%;
-    --secondary-light: 175 61% 40%;
-
-    /* Corporate Gray Tones */
-    --muted: 215 16% 96%;
-    --muted-foreground: 215 13% 54%;
-    
-    --accent: 215 20% 95%;
-    --accent-foreground: 215 25% 27%;
-
-    /* Trust & Success Colors */
+    --secondary-light: 222 40% 20%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 220 14% 93%;
+    --accent-foreground: 222 47% 11%;
     --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;
-    
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
-
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-
-    /* Interface Elements */
-    --border: 215 20% 88%;
-    --input: 215 20% 94%;
-    --ring: 217 91% 24%;
-
-    /* Professional Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(217 91% 24%), hsl(175 61% 29%));
-    --gradient-hero: linear-gradient(135deg, hsl(217 91% 15%) 0%, hsl(175 61% 20%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(215 20% 98%) 100%);
-    
-    /* Corporate Shadows */
-    --shadow-sm: 0 1px 2px 0 hsl(215 25% 27% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(215 25% 27% / 0.1), 0 2px 4px -1px hsl(215 25% 27% / 0.06);
-    --shadow-lg: 0 10px 15px -3px hsl(215 25% 27% / 0.1), 0 4px 6px -2px hsl(215 25% 27% / 0.05);
-    --shadow-xl: 0 20px 25px -5px hsl(215 25% 27% / 0.1), 0 10px 10px -5px hsl(215 25% 27% / 0.04);
-
-    /* Animations & Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-    --radius: 0.75rem;
-
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 24 95% 53%;
+    --radius: 0.5rem;
+    --nav-bg: 222 47% 11%;
+    --nav-text: 220 15% 80%;
+    --nav-text-hover: 24 95% 53%;
+    --dark-section: 222 47% 11%;
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    /* Dark Mode Base Colors */
-    --background: 215 28% 8%;
-    --foreground: 215 20% 95%;
-
-    /* Dark Card & Surface Colors */
-    --card: 215 28% 10%;
-    --card-foreground: 215 20% 95%;
-
-    /* Dark Primary - Lighter navy for contrast */
-    --primary: 217 91% 60%;
-    --primary-foreground: 215 28% 8%;
-    --primary-light: 217 91% 70%;
-    --primary-dark: 217 91% 45%;
-
-    /* Dark Secondary - Lighter teal */
-    --secondary: 175 61% 50%;
-    --secondary-foreground: 215 28% 8%;
-    --secondary-light: 175 61% 60%;
-
-    /* Dark Corporate Gray Tones */
-    --muted: 215 16% 15%;
-    --muted-foreground: 215 13% 65%;
-    
-    --accent: 215 20% 18%;
-    --accent-foreground: 215 20% 95%;
-
-    /* Dark Trust & Success Colors */
+    --background: 222 47% 5%;
+    --foreground: 210 40% 96%;
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 24 95% 62%;
+    --primary-dark: 24 95% 42%;
+    --secondary: 210 20% 80%;
+    --secondary-foreground: 222 47% 8%;
+    --secondary-light: 210 15% 70%;
+    --muted: 222 40% 11%;
+    --muted-foreground: 215 20% 70%;
+    --accent: 222 40% 13%;
+    --accent-foreground: 210 40% 96%;
     --success: 142 71% 55%;
-    --success-foreground: 215 28% 8%;
-    
+    --success-foreground: 222 47% 5%;
     --warning: 38 92% 60%;
-    --warning-foreground: 215 28% 8%;
-
+    --warning-foreground: 222 47% 5%;
     --destructive: 0 84% 70%;
-    --destructive-foreground: 215 28% 8%;
-
-    /* Dark Interface Elements */
-    --border: 215 20% 20%;
-    --input: 215 20% 15%;
-    --ring: 217 91% 60%;
-
-    /* Dark Professional Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(217 91% 60%), hsl(175 61% 50%));
-    --gradient-hero: linear-gradient(135deg, hsl(215 28% 6%) 0%, hsl(175 61% 12%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(215 28% 10%) 0%, hsl(215 20% 12%) 100%);
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --destructive-foreground: 222 47% 5%;
+    --border: 222 30% 20%;
+    --input: 222 40% 11%;
+    --ring: 24 95% 53%;
+    --nav-bg: 222 47% 7%;
+    --nav-text: 210 20% 78%;
+    --nav-text-hover: 24 95% 53%;
+    --dark-section: 222 47% 7%;
+    --sidebar-background: 222 47% 7%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 24 95% 53%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 222 40% 13%;
+    --sidebar-accent-foreground: 210 40% 96%;
+    --sidebar-border: 222 30% 20%;
+    --sidebar-ring: 24 95% 53%;
   }
 }
 
@@ -144,112 +91,124 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+  }
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 }
 
-/* Professional Animation Classes */
+/* ===== Animations ===== */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 @keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
-
-@keyframes slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes fade-in-left {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
 }
-
+@keyframes fade-in-right {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
 @keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slide-up {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+.animate-fade-in-up { animation: fade-in-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-in { animation: fade-in 0.7s ease-out both; }
+.animate-fade-in-left { animation: fade-in-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-fade-in-right { animation: fade-in-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-scale-in { animation: scale-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+.animate-slide-up { animation: slide-up 0.8s ease-out both; }
+.animate-count-up { animation: count-up 0.6s ease-out both; }
+
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-150 { animation-delay: 150ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+.animation-delay-450 { animation-delay: 450ms; }
+.animation-delay-500 { animation-delay: 500ms; }
+.animation-delay-600 { animation-delay: 600ms; }
+.animation-delay-700 { animation-delay: 700ms; }
+.animation-delay-800 { animation-delay: 800ms; }
+.animation-delay-900 { animation-delay: 900ms; }
+.animation-delay-1200 { animation-delay: 1200ms; }
+
+/* Scroll-triggered reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
 }
 
-/* Animation utility classes */
-.animate-fade-in {
-  animation: fade-in 0.8s ease-out forwards;
+/* Stagger children */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(25px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
-.animate-slide-up {
-  animation: slide-up 0.8s ease-out forwards;
-}
-
-.animate-scale-in {
-  animation: scale-in 0.8s ease-out forwards;
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
-
-/* Animation delays */
-.animation-delay-300 {
-  animation-delay: 0.3s;
-}
-
-.animation-delay-600 {
-  animation-delay: 0.6s;
-}
-
-.animation-delay-900 {
-  animation-delay: 0.9s;
-}
-
-.animation-delay-1200 {
-  animation-delay: 1.2s;
-}
-
-.animation-delay-1500 {
-  animation-delay: 1.5s;
-}
-
-/* Professional scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: hsl(var(--muted));
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, hsl(var(--primary)), hsl(var(--secondary)));
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, hsl(var(--primary-dark)), hsl(var(--secondary)));
-}
-
-/* Smooth scroll behavior */
-html {
-  scroll-behavior: smooth;
-}
+.reveal-stagger.revealed > *:nth-child(1) { transition-delay: 0ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.revealed > *:nth-child(2) { transition-delay: 80ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.revealed > *:nth-child(3) { transition-delay: 160ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.revealed > *:nth-child(4) { transition-delay: 240ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.revealed > *:nth-child(5) { transition-delay: 320ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.revealed > *:nth-child(6) { transition-delay: 400ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.revealed > *:nth-child(7) { transition-delay: 480ms; opacity: 1; transform: translateY(0); }
+.reveal-stagger.revealed > *:nth-child(8) { transition-delay: 560ms; opacity: 1; transform: translateY(0); }

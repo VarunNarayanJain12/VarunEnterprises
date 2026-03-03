@@ -1,307 +1,115 @@
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Clock, 
-  MessageCircle,
-  Send,
-  Building2
-} from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { MapPin, Phone, Mail, Clock, MessageCircle, ArrowRight } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
 
 const ContactSection = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    company: "",
-    service: "",
-    message: ""
-  });
+  useReveal();
 
   const contactInfo = [
     {
-      icon: MapPin,
-      title: "Our Office",
-      content: "Mumbai Business District, Maharashtra - 400001",
-      link: "https://maps.google.com/?q=Mumbai+Maharashtra"
-    },
-    {
       icon: Phone,
-      title: "Phone Number",
-      content: "+91 98765 43210",
-      link: "tel:+919876543210"
+      title: "Call Us",
+      content: "+91 98355 42400",
+      link: "tel:+919835542400",
     },
     {
       icon: Mail,
-      title: "Email Address",
-      content: "info@varunenterprises.com",
-      link: "mailto:info@varunenterprises.com"
+      title: "Email",
+      content: "varun.ent22@rediffmail.com",
+      link: "mailto:varun.ent22@rediffmail.com",
+    },
+    {
+      icon: MapPin,
+      title: "Visit Us",
+      content: "Ghatsila, Jharkhand",
+      link: "https://maps.google.com/?q=Varun+Enterprises+Ghatsila+Jharkhand",
     },
     {
       icon: Clock,
-      title: "Business Hours",
-      content: "Mon - Fri: 9:00 AM - 6:00 PM",
-      link: null
-    }
+      title: "Working Hours",
+      content: "Mon - Sat: 9 AM - 6 PM",
+      link: null,
+    },
   ];
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
-      toast({
-        title: "Missing Information",
-        description: "Please fill in all required fields.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    // Simulate form submission
-    toast({
-      title: "Message Sent Successfully!",
-      description: "We'll get back to you within 24 hours.",
-    });
-
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      company: "",
-      service: "",
-      message: ""
-    });
-  };
-
   const openWhatsApp = () => {
-    const message = encodeURIComponent("Hi! I'm interested in your trading and tender services. Please provide more information.");
-    window.open(`https://wa.me/919876543210?text=${message}`, '_blank');
+    const message = encodeURIComponent("Hi! I'm interested in your industrial supply services. Please provide more information.");
+    window.open("https://wa.me/919835542400?text=" + message, "_blank");
   };
 
   return (
-    <section id="contact" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Contact <span className="bg-gradient-primary bg-clip-text text-transparent">Us</span>
+    <section id="contact" className="py-16 sm:py-20 lg:py-24 bg-background">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
+          {/* Left - Info */}
+          <div className="reveal-left">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-foreground leading-tight tracking-tight mb-3 sm:mb-4">
+              GET IN<br />
+              <span className="text-primary">TOUCH</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Ready to explore new opportunities? Get in touch with our experts for 
-              personalized consulting and strategic guidance for your next project.
+            <div className="w-16 h-1 bg-primary mb-6 sm:mb-8" />
+
+            <p className="text-base sm:text-lg text-foreground/80 dark:text-foreground/70 leading-relaxed mb-8 sm:mb-10">
+              Ready to source industrial materials or need a quote for your next project? Our team is here to help.
             </p>
-          </div>
 
-          {/* WhatsApp CTA - Full Width at the Top */}
-          <Card className="bg-gradient-primary border-none w-full mb-12">
-            <CardContent className="p-6">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                <div className="flex items-center gap-4">
-                  <MessageCircle className="h-10 w-10 text-primary-foreground" />
-                  <div>
-                    <h4 className="font-semibold text-xl text-primary-foreground mb-1">
-                      Quick Support on WhatsApp
-                    </h4>
-                    <p className="text-primary-foreground/90">
-                      Get instant responses to your queries - available 24/7
-                    </p>
-                  </div>
-                </div>
-                <Button 
-                  onClick={openWhatsApp}
-                  className="bg-secondary hover:bg-secondary-light text-secondary-foreground px-6 py-3 text-base"
-                  size="lg"
-                >
-                  Chat Now
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
-          
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Information */}
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-6">
-                  Get In Touch
-                </h3>
-                <p className="text-muted-foreground mb-8">
-                  We're here to help you navigate the complex world of government tenders 
-                  and corporate trading. Reach out to us through any of the channels below.
-                </p>
-              </div>
-
-              {/* Contact Details */}
-              <div className="grid gap-6">
-                {contactInfo.map((info, index) => (
-                  <Card key={index} className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                    <CardContent className="p-6">
-                      <div className="flex items-start gap-4">
-                        <div className="flex-shrink-0 w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center group-hover:scale-110 transition-transform">
-                          <info.icon className="h-6 w-6 text-primary-foreground" />
-                        </div>
-                        <div className="flex-1">
-                          <h4 className="font-semibold text-foreground mb-1">{info.title}</h4>
-                          {info.link ? (
-                            <a 
-                              href={info.link}
-                              className="text-muted-foreground hover:text-primary transition-colors"
-                              target={info.link.startsWith('http') ? '_blank' : undefined}
-                              rel={info.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                            >
-                              {info.content}
-                            </a>
-                          ) : (
-                            <p className="text-muted-foreground">{info.content}</p>
-                          )}
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-
-
-            </div>
-
-            {/* Contact Form */}
-            <div>
-              <Card className="bg-gradient-card border-none shadow-xl">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-foreground flex items-center gap-2">
-                    <Building2 className="h-6 w-6" />
-                    Send Us a Message
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <form onSubmit={handleSubmit} className="space-y-4">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="name">Full Name *</Label>
-                        <Input
-                          id="name"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          placeholder="Your full name"
-                          required
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email Address *</Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="your.email@company.com"
-                          required
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="phone">Phone Number</Label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          placeholder="+91 98765 43210"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="company">Company Name</Label>
-                        <Input
-                          id="company"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleInputChange}
-                          placeholder="Your company name"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="service">Service of Interest</Label>
-                      <Input
-                        id="service"
-                        name="service"
-                        value={formData.service}
-                        onChange={handleInputChange}
-                        placeholder="e.g., Government Tenders, Corporate Trading"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="message">Message *</Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        placeholder="Tell us about your requirements and how we can help you..."
-                        rows={4}
-                        required
-                      />
-                    </div>
-
-                    <Button 
-                      type="submit" 
-                      className="w-full bg-gradient-primary hover:opacity-90 group"
-                      size="lg"
+            {/* Contact Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10">
+              {contactInfo.map((info, index) => (
+                <div key={index} className="group p-4 sm:p-5 bg-card border border-border/50 hover:border-primary/60 transition-all duration-500 hover:shadow-lg hover:-translate-y-0.5">
+                  <info.icon className="h-4 w-4 sm:h-5 sm:w-5 text-primary mb-2 sm:mb-3" />
+                  <h4 className="font-bold text-card-foreground text-xs sm:text-sm mb-1">{info.title}</h4>
+                  {info.link ? (
+                    <a
+                      href={info.link}
+                      className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors duration-300 break-all"
+                      target={info.link.startsWith("http") ? "_blank" : undefined}
+                      rel={info.link.startsWith("http") ? "noopener noreferrer" : undefined}
                     >
-                      Send Message
-                      <Send className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </form>
+                      {info.content}
+                    </a>
+                  ) : (
+                    <p className="text-xs sm:text-sm text-muted-foreground">{info.content}</p>
+                  )}
+                </div>
+              ))}
+            </div>
 
-                  <div className="text-center text-sm text-muted-foreground pt-4 border-t border-border">
-                    We typically respond within 24 hours during business days
-                  </div>
-                </CardContent>
-              </Card>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Button
+                onClick={openWhatsApp}
+                size="lg"
+                className="h-12 sm:h-14 px-6 sm:px-8 text-[11px] sm:text-[12px] font-bold tracking-[0.15em] bg-green-600 hover:bg-green-500 text-white rounded-none group shadow-lg shadow-green-600/20 transition-all duration-300"
+              >
+                <MessageCircle className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                CHAT ON WHATSAPP
+              </Button>
+              <Button
+                size="lg"
+                className="h-12 sm:h-14 px-6 sm:px-8 text-[11px] sm:text-[12px] font-bold tracking-[0.15em] bg-primary hover:bg-primary-light text-white rounded-none group shadow-lg shadow-primary/20 transition-all duration-300"
+                onClick={() => window.open("mailto:varun.ent22@rediffmail.com", "_blank")}
+              >
+                SEND EMAIL
+                <ArrowRight className="ml-2 h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover:translate-x-1 transition-transform" />
+              </Button>
             </div>
           </div>
 
-          {/* Map Section */}
-          <div className="mt-16">
-            <Card className="overflow-hidden border-none shadow-xl">
-              <CardContent className="p-0">
-                <div className="aspect-video w-full">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.4935517553754!2d77.04823!3d28.459497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d194dcb77e90b%3A0x8a3b7e40f7b0e8b0!2sSector%2014%2C%20Gurugram%2C%20Haryana!5e0!3m2!1sen!2sin!4v1635781234567!5m2!1sen!2sin"
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="TradeCorp Office Location"
-                  ></iframe>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Right - Map */}
+          <div className="reveal-right">
+            <div className="bg-card border border-border/50 overflow-hidden h-full min-h-[300px] sm:min-h-[400px] shadow-lg">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3683.123456789012!2d86.476543!3d22.585678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f5e123456789ab%3A0x123456789abcdef!2sVarun%20Enterprises%2C%20Ghatsila%2C%20Jharkhand!5e0!3m2!1sen!2sin!4v1691234567890!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0, minHeight: "300px" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Varun Enterprises Ghatsila Location"
+              />
+            </div>
           </div>
         </div>
       </div>

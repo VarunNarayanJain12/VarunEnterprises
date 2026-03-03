@@ -1,200 +1,103 @@
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Linkedin, 
-  Twitter, 
-  Facebook,
-  ArrowUp
-} from "lucide-react";
+import { MapPin, Phone, Mail, Linkedin, Twitter, ArrowUp } from "lucide-react";
 
 const Footer = () => {
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  const footerLinks = {
-    services: [
-      { name: "Government Tenders", href: "#services" },
-      { name: "Corporate Trading", href: "#services" },
-      { name: "Legal Documentation", href: "#services" },
-      { name: "Logistics & Delivery", href: "#services" },
-    ],
-    company: [
-      { name: "About Us", href: "#about" },
-      { name: "Our Process", href: "#process" },
-      { name: "Clients", href: "#clients" },
-      { name: "Careers", href: "#" },
-    ],
-    resources: [
-      { name: "Tender Alerts", href: "#" },
-      { name: "Company Profile", href: "#" },
-      { name: "Case Studies", href: "#" },
-      { name: "Industry Insights", href: "#" },
-    ],
-    legal: [
-      { name: "Privacy Policy", href: "#" },
-      { name: "Terms of Service", href: "#" },
-      { name: "Compliance", href: "#" },
-      { name: "Sitemap", href: "#" },
-    ]
-  };
-
-  const socialLinks = [
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Facebook, href: "#", label: "Facebook" },
-  ];
 
   return (
-    <footer className="bg-gradient-hero text-primary-foreground relative">
-      {/* Back to Top Button */}
-      <Button
-        onClick={scrollToTop}
-        className="absolute -top-6 left-1/2 transform -translate-x-1/2 rounded-full w-12 h-12 bg-secondary hover:bg-secondary-light text-secondary-foreground shadow-lg"
-        size="sm"
-      >
-        <ArrowUp className="h-5 w-5" />
-      </Button>
-
-      <div className="container mx-auto px-4 pt-16 pb-8">
-        <div className="grid lg:grid-cols-5 gap-8 mb-12">
-          {/* Company Info */}
-          <div className="lg:col-span-2 space-y-6">
-            <div>
-              <h2 className="text-3xl font-bold mb-4">Varun Enterprises</h2>
-              <p className="text-primary-foreground/90 text-lg leading-relaxed">
-                Your trusted partner for government tenders and corporate trading solutions. 
-                Building bridges between opportunity and success since 2008.
-              </p>
-            </div>
-
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <MapPin className="h-5 w-5 text-secondary-light flex-shrink-0" />
-                <span className="text-primary-foreground/90">
-                  Mumbai Business District, Maharashtra - 400001
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-secondary-light flex-shrink-0" />
-                <a href="tel:+919876543210" className="text-primary-foreground/90 hover:text-secondary-light transition-colors">
-                  +91 98765 43210
-                </a>
-              </div>
-              <div className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-secondary-light flex-shrink-0" />
-                <a href="mailto:info@varunenterprises.com" className="text-primary-foreground/90 hover:text-secondary-light transition-colors">
-                  info@varunenterprises.com
-                </a>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="flex gap-4">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="w-10 h-10 rounded-full bg-primary-foreground/10 flex items-center justify-center hover:bg-secondary-light hover:text-secondary-foreground transition-all duration-300 hover:scale-110"
-                  aria-label={social.label}
-                >
-                  <social.icon className="h-5 w-5" />
-                </a>
-              ))}
-            </div>
+    <footer className="bg-secondary dark:bg-card text-secondary-foreground dark:text-foreground">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-16 pb-6 sm:pb-8">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-8 sm:mb-12">
+          {/* Brand */}
+          <div className="col-span-2 sm:col-span-1 lg:col-span-1 space-y-4 sm:space-y-6">
+            <a href="#home">
+              <img
+                src="/logo.png"
+                alt="Varun Enterprises"
+                className="h-16 sm:h-20 lg:h-24 w-auto object-contain"
+              />
+            </a>
+            <p className="text-secondary-foreground/60 dark:text-muted-foreground text-xs sm:text-sm leading-relaxed">
+              Your trusted partner for industrial materials supply and government tender solutions since 2008.
+            </p>
           </div>
 
-          {/* Footer Links */}
-          <div className="lg:col-span-3">
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Services */}
-              <div>
-                <h3 className="text-lg font-semibold mb-4 text-secondary-light">Services</h3>
-                <ul className="space-y-2">
-                  {footerLinks.services.map((link, index) => (
-                    <li key={index}>
-                      <a
-                        href={link.href}
-                        className="text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm"
-                      >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.25em] text-secondary-foreground/40 dark:text-muted-foreground mb-4 sm:mb-6">Quick Links</h4>
+            <ul className="space-y-2 sm:space-y-3">
+              {[
+                { name: "Home", href: "#home" },
+                { name: "Products", href: "#services" },
+                { name: "About Us", href: "#about" },
+                { name: "Contact", href: "#contact" },
+              ].map((link, i) => (
+                <li key={i}>
+                  <a href={link.href} className="text-xs sm:text-sm text-secondary-foreground/60 dark:text-muted-foreground hover:text-primary transition-colors duration-300">{link.name}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              {/* Company */}
-              <div>
-                <h3 className="text-lg font-semibold mb-4 text-secondary-light">Company</h3>
-                <ul className="space-y-2">
-                  {footerLinks.company.map((link, index) => (
-                    <li key={index}>
-                      <a
-                        href={link.href}
-                        className="text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm"
-                      >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          {/* Products */}
+          <div>
+            <h4 className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.25em] text-secondary-foreground/40 dark:text-muted-foreground mb-4 sm:mb-6">Products</h4>
+            <ul className="space-y-2 sm:space-y-3">
+              {["Industrial Electronics", "Electrical Equipment", "Pumping Equipment", "Safety & PPE"].map((item, i) => (
+                <li key={i}>
+                  <a href="#services" className="text-xs sm:text-sm text-secondary-foreground/60 dark:text-muted-foreground hover:text-primary transition-colors duration-300">{item}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              {/* Resources */}
-              <div>
-                <h3 className="text-lg font-semibold mb-4 text-secondary-light">Resources</h3>
-                <ul className="space-y-2">
-                  {footerLinks.resources.map((link, index) => (
-                    <li key={index}>
-                      <a
-                        href={link.href}
-                        className="text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm"
-                      >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Legal */}
-              <div>
-                <h3 className="text-lg font-semibold mb-4 text-secondary-light">Legal</h3>
-                <ul className="space-y-2">
-                  {footerLinks.legal.map((link, index) => (
-                    <li key={index}>
-                      <a
-                        href={link.href}
-                        className="text-primary-foreground/80 hover:text-primary-foreground transition-colors text-sm"
-                      >
-                        {link.name}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          {/* Contact */}
+          <div className="col-span-2 sm:col-span-1">
+            <h4 className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.25em] text-secondary-foreground/40 dark:text-muted-foreground mb-4 sm:mb-6">Contact</h4>
+            <div className="space-y-2.5 sm:space-y-3">
+              <a href="https://maps.google.com/?q=Varun+Enterprises+Ghatsila" className="flex items-center gap-2.5 sm:gap-3 text-secondary-foreground/60 dark:text-muted-foreground hover:text-white transition-colors duration-300 text-xs sm:text-sm" target="_blank" rel="noopener noreferrer">
+                <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
+                <span>Ghatsila, Jharkhand</span>
+              </a>
+              <a href="tel:+919876543210" className="flex items-center gap-2.5 sm:gap-3 text-secondary-foreground/60 dark:text-muted-foreground hover:text-white transition-colors duration-300 text-xs sm:text-sm">
+                <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
+                <span>+91 98765 43210</span>
+              </a>
+              <a href="mailto:info@varunenterprises.com" className="flex items-center gap-2.5 sm:gap-3 text-secondary-foreground/60 dark:text-muted-foreground hover:text-white transition-colors duration-300 text-xs sm:text-sm">
+                <Mail className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
+                <span className="break-all">info@varunenterprises.com</span>
+              </a>
             </div>
           </div>
         </div>
 
-        <Separator className="bg-primary-foreground/20 mb-8" />
+        <Separator className="bg-secondary-foreground/10 dark:bg-border mb-6 sm:mb-8" />
 
-        {/* Bottom Footer */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="text-primary-foreground/80 text-sm">
-            © 2024 Varun Enterprises. All rights reserved. | Registered Company No: U12345MH2008PTC123456
+        <div className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-center">
+          <p className="text-[10px] sm:text-xs text-secondary-foreground/40 dark:text-muted-foreground text-center sm:text-left">
+            &copy; {new Date().getFullYear()} Varun Enterprises. All rights reserved.
+          </p>
+          <div className="flex items-center justify-center gap-4 sm:gap-6">
+            {["ISO 9001:2015", "MSME Registered", "Govt. Approved"].map((badge, i) => (
+              <span key={i} className="text-[9px] sm:text-xs text-secondary-foreground/30 dark:text-muted-foreground/60 font-semibold">{badge}</span>
+            ))}
           </div>
-          <div className="flex items-center gap-6 text-sm text-primary-foreground/80">
-            <span>ISO 9001:2015 Certified</span>
-            <span>•</span>
-            <span>MSME Registered</span>
-            <span>•</span>
-            <span>Government Approved</span>
+          <div className="flex items-center justify-center sm:justify-end gap-2.5 sm:gap-3">
+            <a href="#" className="w-8 h-8 sm:w-9 sm:h-9 border border-secondary-foreground/20 dark:border-border flex items-center justify-center hover:border-primary hover:text-primary transition-all duration-300" aria-label="LinkedIn">
+              <Linkedin className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-secondary-foreground/40 dark:text-muted-foreground" />
+            </a>
+            <a href="#" className="w-8 h-8 sm:w-9 sm:h-9 border border-secondary-foreground/20 dark:border-border flex items-center justify-center hover:border-primary hover:text-primary transition-all duration-300" aria-label="Twitter">
+              <Twitter className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-secondary-foreground/40 dark:text-muted-foreground" />
+            </a>
+            <button
+              onClick={scrollToTop}
+              className="w-8 h-8 sm:w-9 sm:h-9 bg-primary hover:bg-primary-light flex items-center justify-center text-white transition-all duration-300 ml-1.5 sm:ml-2 shadow-lg shadow-primary/20"
+              aria-label="Back to top"
+            >
+              <ArrowUp className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+            </button>
           </div>
         </div>
       </div>

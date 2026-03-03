@@ -1,177 +1,170 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Phone, Mail, MapPin, Clock } from "lucide-react";
+import { Menu, X, Sun, Moon, Download } from "lucide-react";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      setIsDark(true);
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    setIsDark(!isDark);
+    if (isDark) {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
+
+      // Map every section id to the nav item it belongs to
+      const sectionToNav: Record<string, string> = {
+        home: "home",
+        services: "services",
+        about: "about",
+        clients: "about",
+        process: "about",
+        contact: "contact",
+      };
+
+      const sectionIds = ["home", "services", "about", "clients", "process", "contact"];
+      let current = "home";
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el && el.getBoundingClientRect().top <= 120) {
+          current = sectionToNav[sectionIds[i]] || sectionIds[i];
+          break;
+        }
+      }
+      setActiveSection(current);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navigationItems = [
-    { name: "Home", href: "#home" },
-    { name: "About Us", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Clients", href: "#clients" },
-    { name: "Process", href: "#process" },
-    { name: "Contact", href: "#contact" },
+  const navItems = [
+    { name: "HOME", href: "#home", section: "home" },
+    { name: "ABOUT", href: "#about", section: "about" },
+    { name: "PRODUCTS", href: "#services", section: "services" },
+    { name: "CONTACT", href: "#contact", section: "contact" },
   ];
 
+  const scrollTo = (id: string) => {
+    setIsMenuOpen(false);
+    document.getElementById(id.replace("#", ""))?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const navBg = isScrolled
+    ? "bg-secondary/95 dark:bg-card/95 backdrop-blur-xl shadow-xl"
+    : "bg-secondary dark:bg-card";
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
-      {/* Top Info Bar - Hidden on scroll */}
-      <div className={`bg-primary text-primary-foreground transition-all duration-300 ${
-        isScrolled ? 'h-0 overflow-hidden opacity-0' : 'h-auto opacity-100'
-      }`}>
-        <div className="container mx-auto px-4 py-2">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-2 text-sm">
-            <div className="flex flex-wrap items-center gap-4 md:gap-6">
-              <a href="tel:+919876543210" className="flex items-center gap-2 hover:text-secondary-light transition-colors group">
-                <Phone className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                <span>+91 98765 43210</span>
-              </a>
-              <a href="mailto:info@varunenterprises.com" className="flex items-center gap-2 hover:text-secondary-light transition-colors group">
-                <Mail className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                <span>info@varunenterprises.com</span>
-              </a>
-              <div className="hidden lg:flex items-center gap-2 text-primary-foreground/80">
-                <MapPin className="h-4 w-4" />
-                <span>Mumbai, Maharashtra</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 text-primary-foreground/90">
-              <Clock className="h-4 w-4" />
-              <span className="font-medium">Serving Excellence Since 2008</span>
-            </div>
+    <header className={"fixed top-0 left-0 right-0 z-50 transition-all duration-500 " + navBg}>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20 lg:h-[88px]">
+          {/* Logo */}
+          <a href="#home" className="flex items-end pb-1 z-10">
+            <img
+              src="/logo.png"
+              alt="Varun Enterprises"
+              className="h-16 sm:h-20 lg:h-24 w-auto object-contain"
+            />
+          </a>
+
+          {/* Nav Links */}
+          <nav className="hidden lg:flex items-center gap-1">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.section;
+              const linkClass = isActive
+                ? "text-primary"
+                : "text-white/60 hover:text-white";
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={"relative px-5 py-2.5 text-[13px] font-bold tracking-[0.15em] transition-colors duration-300 " + linkClass}
+                >
+                  {item.name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-5 right-5 h-0.5 bg-primary" />
+                  )}
+                </a>
+              );
+            })}
+          </nav>
+
+          {/* Right Side */}
+          <div className="flex items-center gap-2 sm:gap-4 z-10">
+            <button
+              onClick={toggleTheme}
+              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-white/50 hover:text-primary hover:bg-white/5 transition-all duration-300"
+              aria-label="Toggle theme"
+            >
+              {isDark ? <Sun className="h-[18px] w-[18px]" /> : <Moon className="h-[18px] w-[18px]" />}
+            </button>
+            <a
+              href="/brochure.pdf"
+              download
+              className="hidden lg:flex items-center gap-2 h-11 px-7 text-[12px] font-bold tracking-[0.2em] bg-primary hover:bg-primary-light text-white transition-all duration-300 rounded-none shadow-lg shadow-primary/20 hover:shadow-primary/40"
+            >
+              <Download className="h-4 w-4" />
+              BROCHURE
+            </a>
+            <button
+              className="lg:hidden w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Main Navigation */}
-      <nav className={`transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-lg border-b border-border/50' 
-          : 'bg-background/95 backdrop-blur-sm border-b border-border/30'
-      }`}>
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
-            {/* Enhanced Logo */}
-            <a href="#home" className="flex items-center gap-3 group">
-              <div className="relative w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center shadow-md group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                <span className="text-2xl font-bold text-white">VE</span>
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                  Varun Enterprises
-                </span>
-                <span className="text-xs text-muted-foreground font-medium">
-                  Trading & Tender Solutions
-                </span>
-              </div>
+      {/* Mobile Menu */}
+      <div
+        className={"lg:hidden overflow-hidden transition-all duration-400 ease-in-out " + (isMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0")}
+      >
+        <div className="bg-secondary dark:bg-card border-t border-white/10">
+          <nav className="container mx-auto px-4 sm:px-6 py-4 sm:py-6 flex flex-col gap-1">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.section;
+              return (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className={"py-3 px-4 text-sm font-bold tracking-wider transition-all duration-200 " + (isActive ? "text-primary bg-white/5 border-l-2 border-primary" : "text-white/70 hover:text-white hover:bg-white/5")}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {item.name}
+                </a>
+              );
+            })}
+            <a
+              href="/brochure.pdf"
+              download
+              className="mt-3 w-full rounded-none bg-primary hover:bg-primary-light text-white font-bold tracking-[0.2em] h-12 shadow-lg shadow-primary/20 flex items-center justify-center gap-2 text-[12px] transition-all duration-300"
+            >
+              <Download className="h-4 w-4" />
+              BROCHURE
             </a>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center gap-8">
-              <div className="flex items-center gap-6">
-                {navigationItems.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="relative text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-all duration-200 group"
-                  >
-                    {item.name}
-                    <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary transition-all duration-300 group-hover:w-full"></span>
-                  </a>
-                ))}
-              </div>
-              
-              <div className="flex items-center gap-3">
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-                >
-                  Company Profile
-                </Button>
-                <Button 
-                  size="sm" 
-                  className="bg-gradient-to-r from-primary to-secondary hover:from-primary-dark hover:to-secondary text-white shadow-md hover:shadow-lg transition-all duration-300"
-                >
-                  Get Quote
-                </Button>
-              </div>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="lg:hidden">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-2"
-              >
-                {isMenuOpen ? (
-                  <X className="h-6 w-6 text-foreground" />
-                ) : (
-                  <Menu className="h-6 w-6 text-foreground" />
-                )}
-              </Button>
-            </div>
-          </div>
-
-          {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-border shadow-xl">
-              <div className="px-4 py-6 space-y-1">
-                {navigationItems.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="block px-4 py-3 text-foreground hover:text-primary hover:bg-accent rounded-lg text-base font-medium transition-all duration-200"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    {item.name}
-                  </a>
-                ))}
-                
-                {/* Mobile Contact Info */}
-                <div className="pt-4 mt-4 border-t border-border space-y-3">
-                  <div className="flex items-center gap-3 px-4 py-2 text-sm text-muted-foreground">
-                    <Phone className="h-4 w-4" />
-                    <span>+91 98765 43210</span>
-                  </div>
-                  <div className="flex items-center gap-3 px-4 py-2 text-sm text-muted-foreground">
-                    <Mail className="h-4 w-4" />
-                    <span>info@varunenterprises.com</span>
-                  </div>
-                  
-                  {/* Mobile CTA Buttons */}
-                  <div className="px-4 pt-4 space-y-3">
-                    <Button 
-                      variant="outline" 
-                      className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-                    >
-                      Company Profile
-                    </Button>
-                    <Button 
-                      className="w-full bg-gradient-to-r from-primary to-secondary text-white"
-                    >
-                      Get Quote
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
+          </nav>
         </div>
-      </nav>
+      </div>
     </header>
   );
 };
