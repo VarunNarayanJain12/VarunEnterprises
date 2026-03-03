@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, Download } from "lucide-react";
 
 const HeroSection = () => {
   const scrollToSection = (sectionId: string) => {
@@ -42,8 +42,8 @@ const HeroSection = () => {
             and leading private enterprises.
           </p>
 
-          {/* CTA Button */}
-          <div className="animate-fade-in-up animation-delay-450">
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up animation-delay-450">
             <Button
               size="lg"
               onClick={() => scrollToSection("services")}
@@ -52,6 +52,14 @@ const HeroSection = () => {
               EXPLORE PRODUCTS
               <ArrowRight className="ml-3 h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </Button>
+            <a
+              href="/brochure.pdf"
+              download
+              className="inline-flex items-center justify-center gap-2 h-12 sm:h-14 px-8 sm:px-10 text-[11px] sm:text-[12px] font-bold tracking-[0.2em] border-2 border-white/30 text-white hover:border-primary hover:bg-primary/10 rounded-none transition-all duration-300"
+            >
+              <Download className="h-4 w-4" />
+              BROCHURE
+            </a>
           </div>
         </div>
       </div>

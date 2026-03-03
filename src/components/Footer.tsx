@@ -1,5 +1,5 @@
 import { Separator } from "@/components/ui/separator";
-import { MapPin, Phone, Mail, Linkedin, Twitter, ArrowUp } from "lucide-react";
+import { MapPin, Phone, Mail, Linkedin, Twitter, ArrowUp, Download } from "lucide-react";
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -22,6 +22,14 @@ const Footer = () => {
             <p className="text-secondary-foreground/60 dark:text-muted-foreground text-xs sm:text-sm leading-relaxed">
               Your trusted partner for industrial materials supply and government tender solutions since 2008.
             </p>
+            <a
+              href="/brochure.pdf"
+              download
+              className="inline-flex items-center gap-2 h-10 sm:h-11 px-5 sm:px-6 text-[11px] sm:text-[12px] font-bold tracking-[0.15em] bg-primary hover:bg-primary-light text-white transition-all duration-300 rounded-none shadow-lg shadow-primary/20 hover:shadow-primary/40 w-full sm:w-auto justify-center sm:justify-start"
+            >
+              <Download className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              DOWNLOAD BROCHURE
+            </a>
           </div>
 
           {/* Quick Links */}
@@ -61,13 +69,13 @@ const Footer = () => {
                 <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
                 <span>Ghatsila, Jharkhand</span>
               </a>
-              <a href="tel:+919876543210" className="flex items-center gap-2.5 sm:gap-3 text-secondary-foreground/60 dark:text-muted-foreground hover:text-white transition-colors duration-300 text-xs sm:text-sm">
+              <a href="tel:+919835542400" className="flex items-center gap-2.5 sm:gap-3 text-secondary-foreground/60 dark:text-muted-foreground hover:text-white transition-colors duration-300 text-xs sm:text-sm">
                 <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
-                <span>+91 98765 43210</span>
+                <span>+91 98355 42400</span>
               </a>
-              <a href="mailto:info@varunenterprises.com" className="flex items-center gap-2.5 sm:gap-3 text-secondary-foreground/60 dark:text-muted-foreground hover:text-white transition-colors duration-300 text-xs sm:text-sm">
+              <a href="mailto:varun.ent22@rediffmail.com" className="flex items-center gap-2.5 sm:gap-3 text-secondary-foreground/60 dark:text-muted-foreground hover:text-white transition-colors duration-300 text-xs sm:text-sm">
                 <Mail className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
-                <span className="break-all">info@varunenterprises.com</span>
+                <span className="break-all">varun.ent22@rediffmail.com</span>
               </a>
             </div>
           </div>
